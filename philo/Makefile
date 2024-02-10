@@ -1,8 +1,10 @@
 CC = clang
 NAME = philo
-SRCS = ft_atoi.c \
-			philosophers.c \
-			utils.c
+SRCS = philosophers.c \
+			utils.c \
+			routine.c \
+			init.c \
+			actions.c
 HEADER = philosophers.h
 OBJS = $(SRCS:.c=.o)
 CFLAGS = -Werror -Wextra -Wall -g -fsanitize=thread
