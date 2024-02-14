@@ -6,7 +6,7 @@
 /*   By: gmarre <gmarre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 00:17:36 by gmarre            #+#    #+#             */
-/*   Updated: 2024/02/11 00:26:54 by gmarre           ###   ########.fr       */
+/*   Updated: 2024/02/14 12:45:02 by gmarre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ void	start_threads(t_info *info)
 		j = i;
 		while (j < info->n_philos)
 		{
-			pthread_create(&info->philo[j].thread, NULL,
-				routine, &info->philo[j]);
+			pthread_create(&info->philo[j].thread, NULL, routine,
+				&info->philo[j]);
 			j += groups;
 		}
 		i++;
-		usleep(1000);
+		usleep(100);
 	}
 }
 

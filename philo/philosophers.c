@@ -6,7 +6,7 @@
 /*   By: gmarre <gmarre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 11:42:31 by gmarre            #+#    #+#             */
-/*   Updated: 2024/02/11 00:21:09 by gmarre           ###   ########.fr       */
+/*   Updated: 2024/02/14 12:45:06 by gmarre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,16 @@ bool	take_sfork(t_philo *philo)
 
 bool	parsing(int argc, char **argv)
 {
-	if (ft_atoi(argv[1]) <= 0)
+	if (!is_digit(argv[1]) || ft_atoi(argv[1]) <= 0)
 		return (false);
-	if (ft_atoi(argv[2]) < 0)
+	if (!is_digit(argv[2]) || ft_atoi(argv[2]) < 0)
 		return (false);
-	if (ft_atoi(argv[3]) < 0)
+	if (!is_digit(argv[3]) || ft_atoi(argv[3]) < 0)
 		return (false);
-	if (ft_atoi(argv[4]) < 0)
+	if (!is_digit(argv[4]) || ft_atoi(argv[4]) < 0)
 		return (false);
 	if (argc == 6)
-		if (ft_atoi(argv[5]) < 0)
+		if (!is_digit(argv[5]) || ft_atoi(argv[5]) < 0)
 			return (false);
 	return (true);
 }

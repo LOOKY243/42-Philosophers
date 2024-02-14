@@ -1,4 +1,4 @@
-CC = clang
+CC = cc
 NAME = philo
 SRCS = philosophers.c \
 			utils.c \
@@ -7,12 +7,12 @@ SRCS = philosophers.c \
 			actions.c
 HEADER = philosophers.h
 OBJS = $(SRCS:.c=.o)
-CFLAGS = -Werror -Wextra -Wall -g -fsanitize=thread
+CFLAGS = -Werror -Wextra -Wall -g #-fsanitize=thread
 
 all:$(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(OBJS) -o $(NAME) -fsanitize=thread
+	@$(CC) $(OBJS) -o $(NAME) #-fsanitize=thread
 	@printf "\033[1;32mCompilation Finished!\n\033[0m"
 
 %.o : %.c $(HEADER)

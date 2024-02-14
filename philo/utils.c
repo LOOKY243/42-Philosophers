@@ -6,7 +6,7 @@
 /*   By: gmarre <gmarre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 14:19:14 by gmarre            #+#    #+#             */
-/*   Updated: 2024/02/11 00:28:48 by gmarre           ###   ########.fr       */
+/*   Updated: 2024/02/14 12:45:13 by gmarre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,20 @@ int	ft_atoi(const char *nptr)
 		i++;
 	}
 	return (res * sign);
+}
+
+bool	is_digit(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] < '0' && str[i] > '9')
+			return (false);
+		i++;
+	}
+	return (true);
 }
 
 size_t	get_current_time(void)

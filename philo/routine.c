@@ -6,7 +6,7 @@
 /*   By: gmarre <gmarre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 00:14:52 by gmarre            #+#    #+#             */
-/*   Updated: 2024/02/11 00:26:47 by gmarre           ###   ########.fr       */
+/*   Updated: 2024/02/14 12:45:10 by gmarre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	*routine(void *param)
 	t_philo	*philo;
 
 	philo = (t_philo *)param;
-	printf("\033[1;37m%lu \033[1;36m%d is thinking\n\033[0m",
-		get_current_time() - philo->info->start_time, philo->id + 1);
-	while (!is_someone_dead(philo->info) &&!enough_meals(philo))
+	printf("\033[1;37m%lu \033[1;36m%d is thinking\n\033[0m", get_current_time()
+		- philo->info->start_time, philo->id + 1);
+	while (!is_someone_dead(philo->info) && !enough_meals(philo))
 	{
 		if (check_state(philo, THINKING))
 			take_both_forks(philo);
@@ -30,6 +30,7 @@ void	*routine(void *param)
 		if (check_state(philo, SLEEPING))
 			think(philo);
 		die(philo);
+		usleep(5);
 	}
 	return (NULL);
 }
@@ -39,8 +40,8 @@ void	die(t_philo *philo)
 	if (philo->info->ttd < get_current_time() - philo->last_meal)
 	{
 		change_state(philo, DEAD);
-		printf("\033[1;37m%lu \033[1;31m%d died\n\033[0m",
-			get_current_time() - philo->info->start_time, philo->id + 1);
+		printf("\033[1;37m%lu \033[1;31m%d died\n\033[0m", get_current_time()
+			- philo->info->start_time, philo->id + 1);
 	}
 }
 
