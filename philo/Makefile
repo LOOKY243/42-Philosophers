@@ -4,7 +4,8 @@ SRCS = philosophers.c \
 			utils.c \
 			routine.c \
 			init.c \
-			actions.c
+			actions.c \
+			ft_calloc.c
 HEADER = philosophers.h
 OBJS = $(SRCS:.c=.o)
 CFLAGS = -Werror -Wextra -Wall -g #-fsanitize=thread

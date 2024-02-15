@@ -6,7 +6,7 @@
 /*   By: gmarre <gmarre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 11:38:47 by gmarre            #+#    #+#             */
-/*   Updated: 2024/02/14 12:44:54 by gmarre           ###   ########.fr       */
+/*   Updated: 2024/02/15 15:25:38 by gmarre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,6 @@ void					take_both_forks(t_philo *philo);
 bool					take_own_fork(t_philo *philo);
 bool					take_sfork(t_philo *philo);
 bool					is_digit(char *str);
+void					*ft_calloc(size_t nmemb, size_t size);
 
 #endif

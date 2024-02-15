@@ -6,7 +6,7 @@
 /*   By: gmarre <gmarre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 00:17:36 by gmarre            #+#    #+#             */
-/*   Updated: 2024/02/14 12:45:02 by gmarre           ###   ########.fr       */
+/*   Updated: 2024/02/15 15:26:17 by gmarre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	init_infos(int argc, char **argv)
 {
 	t_info	info;
 
-	info.philo = malloc(sizeof(t_philo) * ft_atoi(argv[1]));
+	info.philo = ft_calloc(ft_atoi(argv[1]), sizeof(t_philo));
 	if (!info.philo)
 		return ;
 	info.start_time = get_current_time();
