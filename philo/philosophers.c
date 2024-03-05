@@ -6,7 +6,7 @@
 /*   By: gmarre <gmarre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 11:42:31 by gmarre            #+#    #+#             */
-/*   Updated: 2024/02/14 12:45:06 by gmarre           ###   ########.fr       */
+/*   Updated: 2024/02/23 17:35:17 by gmarre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ bool	take_sfork(t_philo *philo)
 	if (philo->s_fork->available)
 	{
 		philo->s_fork->available = false;
+		pthread_mutex_lock(&philo->info->lock_print);
 		printf("\033[1;37m%lu \033[1;35m%d has taken a fork\n\033[0m",
 			get_current_time() - philo->info->start_time, philo->id + 1);
+		pthread_mutex_unlock(&philo->info->lock_print);
 		pthread_mutex_unlock(&philo->s_fork->lock_fork);
 		return (true);
 	}

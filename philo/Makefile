@@ -8,12 +8,12 @@ SRCS = philosophers.c \
 			ft_calloc.c
 HEADER = philosophers.h
 OBJS = $(SRCS:.c=.o)
-CFLAGS = -Werror -Wextra -Wall -g #-fsanitize=thread
+CFLAGS = -Werror -Wextra -Wall -g
 
 all:$(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(OBJS) -o $(NAME) #-fsanitize=thread
+	@$(CC) $(OBJS) -o $(NAME)
 	@printf "\033[1;32mCompilation Finished!\n\033[0m"
 
 %.o : %.c $(HEADER)

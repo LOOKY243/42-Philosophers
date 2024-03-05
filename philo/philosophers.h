@@ -6,7 +6,7 @@
 /*   By: gmarre <gmarre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 11:38:47 by gmarre            #+#    #+#             */
-/*   Updated: 2024/02/15 15:25:38 by gmarre           ###   ########.fr       */
+/*   Updated: 2024/03/05 12:35:30 by gmarre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # include <stdlib.h>
 # include <sys/time.h>
 # include <unistd.h>
+
+# define INT_MAX 2147483647
+# define INT_MIN -2147483648
 
 typedef struct s_info	t_info;
 
@@ -65,9 +68,11 @@ typedef struct s_info
 	size_t				tte;
 	size_t				tts;
 	size_t				start_time;
+	bool				someone_died;
+	pthread_mutex_t		lock_print;
 }						t_info;
 
-int						ft_atoi(const char *nptr);
+long int				ft_atoi(const char *nptr);
 void					start_threads(t_info *info);
 void					init_philos(t_info *info);
 void					init_infos(int argc, char **argv);

@@ -6,7 +6,7 @@
 /*   By: gmarre <gmarre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 00:08:35 by gmarre            #+#    #+#             */
-/*   Updated: 2024/02/14 12:44:59 by gmarre           ###   ########.fr       */
+/*   Updated: 2024/03/05 12:41:11 by gmarre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,19 @@
 
 void	think(t_philo *philo)
 {
+	if (is_someone_dead(philo->info))
+		return ;
+	pthread_mutex_lock(&philo->info->lock_print);
 	printf("\033[1;37m%lu \033[1;36m%d is thinking\n\033[0m", get_current_time()
 		- philo->info->start_time, philo->id + 1);
+	pthread_mutex_unlock(&philo->info->lock_print);
 	change_state(philo, THINKING);
 }
 
 void	sleepy(t_philo *philo)
 {
+	if (is_someone_dead(philo->info))
+		return ;
 	if (get_current_time() - philo->last_meal >= philo->info->tte
 		+ philo->info->tts)
 		change_state(philo, SLEEPING);
@@ -30,6 +36,8 @@ void	sleepy(t_philo *philo)
 
 void	eat(t_philo *philo)
 {
+	if (is_someone_dead(philo->info))
+		return ;
 	if (get_current_time() - philo->last_meal >= philo->info->tte)
 	{
 		philo->meals++;
@@ -42,19 +50,25 @@ void	eat(t_philo *philo)
 		if (enough_meals(philo))
 			return ;
 		change_state(philo, EATING);
+		pthread_mutex_lock(&philo->info->lock_print);
 		printf("\033[1;37m%lu \033[1;34m%d is sleeping\n\033[0m",
 			get_current_time() - philo->info->start_time, philo->id + 1);
+		pthread_mutex_unlock(&philo->info->lock_print);
 	}
 }
 
 void	take_both_forks(t_philo *philo)
 {
+	if (is_someone_dead(philo->info))
+		return ;
 	if (take_own_fork(philo))
 	{
 		if (take_sfork(philo))
 		{
+			pthread_mutex_lock(&philo->info->lock_print);
 			printf("\033[1;37m%lu \033[1;32m%d is eating\n\033[0m",
 				get_current_time() - philo->info->start_time, philo->id + 1);
+			pthread_mutex_unlock(&philo->info->lock_print);
 			change_state(philo, TOOK_FORKS);
 			philo->last_meal = get_current_time();
 		}

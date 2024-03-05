@@ -6,37 +6,37 @@
 /*   By: gmarre <gmarre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 14:19:14 by gmarre            #+#    #+#             */
-/*   Updated: 2024/02/14 12:45:13 by gmarre           ###   ########.fr       */
+/*   Updated: 2024/02/19 17:20:14 by gmarre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	ft_atoi(const char *nptr)
+long int	ft_atoi(const char *str)
 {
-	int	res;
-	int	i;
-	int	sign;
+	int			i;
+	int			counter;
+	long int	res;
 
 	res = 0;
+	counter = 1;
 	i = 0;
-	sign = 1;
-	while ((nptr[i] >= 7 && nptr[i] <= 13) || nptr[i] == 32)
+	while (str[i] >= 9 && str[i] <= 32)
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
+		if (str[i] == '-')
+			counter = -1;
 		i++;
 	}
-	if (nptr[i] == '-' || nptr[i] == '+')
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		if (nptr[i] == '-')
-			sign = -1;
+		res = (res * 10) + str[i] - '0';
 		i++;
 	}
-	while (nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		res = res * 10 + (nptr[i] - '0');
-		i++;
-	}
-	return (res * sign);
+	if (res * counter > INT_MAX || res * counter < INT_MIN)
+		return (-1);
+	return (res * counter);
 }
 
 bool	is_digit(char *str)
@@ -46,7 +46,10 @@ bool	is_digit(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] < '0' && str[i] > '9')
+		if ((str[i] < '0' || str[i] > '9') && (str[i] != '-' && str[i] != '+'))
+			return (false);
+		if ((str[i] == '-' || str[i] == '+') && i != 0 && str[i - 1] >= '0'
+			&& str[i + 1] <= '9')
 			return (false);
 		i++;
 	}

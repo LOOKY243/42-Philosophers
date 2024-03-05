@@ -6,7 +6,7 @@
 /*   By: gmarre <gmarre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 00:17:36 by gmarre            #+#    #+#             */
-/*   Updated: 2024/02/15 15:26:17 by gmarre           ###   ########.fr       */
+/*   Updated: 2024/03/05 12:35:36 by gmarre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	init_philos(t_info *info)
 		info->philo[i].meals = 0;
 		info->philo[i].last_meal = get_current_time();
 		info->philo[i].fork.available = true;
-		pthread_mutex_init(&info->philo->fork.lock_fork, NULL);
-		pthread_mutex_init(&info->philo->state.lock_state, NULL);
+		pthread_mutex_init(&info->philo[i].fork.lock_fork, NULL);
+		pthread_mutex_init(&info->philo[i].state.lock_state, NULL);
 		info->philo[i].info = info;
 		info->philo[i].state.state = THINKING;
 	}
@@ -72,6 +72,7 @@ void	init_infos(int argc, char **argv)
 	info.tte = ft_atoi(argv[3]);
 	info.tts = ft_atoi(argv[4]);
 	info.n_meals = -1;
+	pthread_mutex_init(&info.lock_print, NULL);
 	if (argc == 6)
 		info.n_meals = ft_atoi(argv[5]);
 	init_philos(&info);
